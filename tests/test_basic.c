@@ -49,8 +49,8 @@ void	test_p()
 
 void	test_s()
 {
-	test_string("%p");
-	test_string(" %p ");
+	test_string("%s");
+	test_string(" %s ");
 }
 
 void	print_test_basic()

@@ -29,6 +29,10 @@ int main()
 		print_test_basic();
 		print_test_minus();
 		print_test_dot();
+		print_test_number();
+
+		// print_test_d("%9%", 0);
+		// print_test_d("%9s%%", 0);
 
 		printf("#END OF FILE\n#END OF FILE\n#END OF FILE\n");
 
@@ -72,6 +76,7 @@ void bettercompare(char *s)
 	char *s2 = tab[2];
 	int is_strs_equal = 0;
 	int is_return_equal = 0;
+	int alltestOK = 0;
 
 	while(1)
 	{
@@ -80,20 +85,26 @@ void bettercompare(char *s)
 			if(strncmp(s0, "#END", 4) == 0)
 				break;
 			if(strncmp(s0, "#test", 4) == 0)
+			{
+				if(alltestOK)
+					printf("\033[38;5;40m All %d tests OK, Congrats ! \033[0m", testnb);
 				printf("\n\033[1;36m%s------------------------------------------------------------------------\n\033[0m", s0);
+				testnb = 0;
+			}
 			else
 				print_colors("\n %s \n", s0, "yellow");
-			
-			testnb = 0;
+			alltestOK = 1;
 		}
 		else if (strncmp(s0, "input :", 5) == 0)
 		{
 			is_strs_equal = strcmp(s1, s2) == 0;
 			is_return_equal = strcmp(s1 + (strlen(s1) - 3), s2 + (strlen(s2) - 3)) == 0;
 			if(is_strs_equal && is_return_equal){
-				printf("\033[38;5;40m%d.OK \033[0m", testnb++);
+				testnb++;
+				// printf("\033[38;5;40m%d.OK \033[0m", testnb++);
 			}
 			else{
+				alltestOK = 0;
 				printf("\n\033[1;31m%d.KO\033[0m", testnb++);
 				if(is_strs_equal == 0)
 					printf("\033[1;31m The output is wrong. \033[0m");
@@ -246,10 +257,10 @@ void print_advanced_test_p()
 
 void print_test_d(char *s, int input)
 {
-	printf("input : (\"%s\", %d)\n", s, input);fflush(stdout);
+	printf("input : (\"%s\", %d)\n", s, input);
 	printf("|");
 	printf("|%4d\n", printf(s, input));
-	printf("|");
+	printf("|");fflush(stdout);
 	printf("|%4d\n", ft_printf(s, input));
 }
 
@@ -258,7 +269,7 @@ void print_test_s(char *s, char *input)
 	printf("input : (\"%s\", %s)\n", s, input);
 	printf("|");
 	printf("|%4d\n", printf(s, input));
-	printf("|");
+	printf("|");fflush(stdout);
 	printf("|%4d\n", ft_printf(s, input));
 }
 
@@ -267,6 +278,6 @@ void print_test_p(char *s, const void *input)
 	printf("input : (\"%s\", %p)\n", s, input);
 	printf("|");
 	printf("|%4d\n", printf(s, input));
-	printf("|");
+	printf("|");fflush(stdout);
 	printf("|%4d\n", ft_printf(s, input));
 }

@@ -8,6 +8,7 @@
 static void	test_d()
 {
 		test_number("%.d");
+		test_number("%.0d");
 		test_number("%.3d");
 		test_number("%.20d");
 		test_number(" %.d ");
@@ -77,12 +78,12 @@ static void	test_p()
 
 static void	test_s()
 {
-		test_string("%.p");
-		test_string("%.3p");
-		test_string("%.20p");
-		test_string(" %.p ");
-		test_string(" %.3p ");
-		test_string(" %.20p ");
+		test_string("%.s");
+		test_string("%.3s");
+		test_string("%.20s");
+		test_string(" %.s ");
+		test_string(" %.3s ");
+		test_string(" %.20s ");
 }
 
 void	print_test_dot()

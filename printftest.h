@@ -25,6 +25,7 @@ void print_test_p(char *s, const void *input);
 void	print_test_basic();
 void	print_test_minus();
 void	print_test_dot();
+void	print_test_number();
 
 
 void	test_number(char *s);
