@@ -23,9 +23,10 @@ void print_test_s(char *s, char *input);
 void print_test_p(char *s, const void *input);
 
 void	print_test_basic();
+void	print_test_basic_extended();
+void	print_test_number();
 void	print_test_minus();
 void	print_test_dot();
-void	print_test_number();
 
 
 void	test_number(char *s);
@@ -36,7 +37,7 @@ void	test_char(char *s);
 
 void print_Header1(int terminalWidth);
 void print_Header2(int terminalWidth, char *s);
-void print_Header3(int terminalWidth, char *s);
+void print_Header3(char *s);
 void printn(char c, int n);
 
 #endif

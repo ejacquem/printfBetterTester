@@ -27,9 +27,10 @@ int main()
         freopen("output.txt", "w", stdout);
 	
 		print_test_basic();
+		print_test_basic_extended();
+		print_test_number();
 		print_test_minus();
 		print_test_dot();
-		print_test_number();
 
 		// print_test_d("%010.5d", 55);
 		// print_test_d("%9%", 0);
@@ -77,7 +78,7 @@ void bettercompare(char *s)
 	int errornum = 0;
 	int errorSUM = 0;
 
-	int twidth = 60;
+	int twidth = getTerminalWidth();
 	int render_output = TRUE;
 
 	print_Header1(twidth);
@@ -89,7 +90,7 @@ void bettercompare(char *s)
 			if(testnb)
 			{
 				if(alltestOK)
-					printf("\033[38;5;40m All %3d tests OK, Congrats ! \033[0m", testnb);
+					printf("\n\033[1;38;5;40m#All %3d tests OK, Congrats ! \033[0m", testnb);
 				else
 				{
 					double percentage = (((testnb - errornum) * 1.0) / (testnb * 1.0)) * 100;
@@ -98,9 +99,9 @@ void bettercompare(char *s)
 			}
 			if(strncmp(s0, "#END", 4) == 0)
 				break;
-			if(strncmp(s0, "#test", 4) == 0)
+			if(strncmp(s0, "#TEST", 4) == 0)
 			{
-				print_Header3(twidth, s0);
+				print_Header3(s0);
 			}
 			else
 				print_Header2(twidth, s0);
@@ -113,7 +114,7 @@ void bettercompare(char *s)
 			is_return_equal = (strcmp(s1 + (strlen(s1) - 3), s2 + (strlen(s2) - 3)) == 0);
 			if(is_strs_equal && is_return_equal){
 				testnb++;
-				// printf("\033[38;5;40m%d.OK \033[0m", testnb++);
+				printf("\033[38;5;40m%d.OK \033[0m", testnb);
 			}
 			else{
 				alltestOK = 0;

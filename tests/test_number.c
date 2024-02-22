@@ -91,20 +91,20 @@ static void	test_s()
 void	print_test_number()
 {
 	printf("#Number Tests\n");
-	printf("#test %%d \n");
-	test_d();
-	printf("#test %%c \n");
+	printf("#TEST DECIMAL (%%d) \n");
 	test_c();
-	printf("#test %%i \n");
+	printf("#TEST INTEGER (%%i) \n");
+	test_d();
+	printf("#TEST CHARACTER (%%c) \n");
 	test_i();
-	printf("#test %%u \n");
+	printf("#TEST UNSIGNED INT (%%u) \n");
 	test_u();
-	printf("#test %%x \n");
+	printf("#TEST HEXADECIMAL (%%x) \n");
 	test_x();
-	printf("#test %%X \n");
+	printf("#TEST HEXADECIMAL (uppercase) (%%X) \n");
 	test_X();
-	printf("#test %%p \n");
+	printf("#TEST POINTER (%%p) \n");
 	test_p();
-	printf("#test %%s \n");
+	printf("#TEST STRING (%%s) \n");
 	test_s();
 }

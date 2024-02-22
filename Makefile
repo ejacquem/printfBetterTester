@@ -1,7 +1,7 @@
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
-SRC		= main.c tests/print_tests.c tests/test_basic.c tests/test_minus.c tests/test_dot.c \
+SRC		= main.c tests/print_tests.c tests/test_basic_extended.c tests/test_basic.c tests/test_minus.c tests/test_dot.c \
 			tests/test_number.c print_header.c 
 OBJS	= $(SRC:.c=.o)
 
@@ -12,7 +12,7 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) a.out
+	$(RM) output.txt run_test
 
 re: fclean all
 
