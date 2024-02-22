@@ -49,11 +49,6 @@ int main()
     return 0;
 }
 
-void	print_header()
-{
-	
-}
-
 void	print_colors(char *s, char *input, char *color)
 {
 	if(strcmp("yellow", color) == 0){
@@ -67,6 +62,7 @@ void	print_colors(char *s, char *input, char *color)
 		printf("wrong color\n");
 }
 
+
 void bettercompare(char *s)
 {
 	char **tab = ft_split(s, '\n');
@@ -77,28 +73,48 @@ void bettercompare(char *s)
 	int is_strs_equal = 0;
 	int is_return_equal = 0;
 	int alltestOK = 0;
+	int errornum = 0;
+
+	int twidth = 60;
+
+	print_Header1(twidth);
 
 	while(1)
 	{
 		if (*s0 == '#')
 		{
+			if(testnb)
+			{
+				if(alltestOK)
+					printf("\033[38;5;40m All %3d tests OK, Congrats ! \033[0m", testnb);
+				else
+				{
+					double percentage = (((testnb - errornum) * 1.0) / (testnb * 1.0)) * 100;
+					if(percentage > 50)
+						printf("\033[38;5;40m");
+					else
+						printf("\033[1;31m");
+
+					printf("\033[38;5;40m\n%3.0f%% tests completed\033[0m", percentage);
+				}
+			}
 			if(strncmp(s0, "#END", 4) == 0)
 				break;
 			if(strncmp(s0, "#test", 4) == 0)
 			{
-				if(alltestOK)
-					printf("\033[38;5;40m All %d tests OK, Congrats ! \033[0m", testnb);
-				printf("\n\033[1;36m%s------------------------------------------------------------------------\n\033[0m", s0);
-				testnb = 0;
+				print_Header3(twidth, s0);
+				// printf("\n\033[1;36m%s------------------------------------------------------------------------\n\033[0m", s0);
 			}
 			else
-				print_colors("\n %s \n", s0, "yellow");
+				print_Header2(twidth, s0);
+				// print_colors("\n\n %s \n", s0, "yellow");
+			testnb = 0;
 			alltestOK = 1;
 		}
 		else if (strncmp(s0, "input :", 5) == 0)
 		{
-			is_strs_equal = strcmp(s1, s2) == 0;
-			is_return_equal = strcmp(s1 + (strlen(s1) - 3), s2 + (strlen(s2) - 3)) == 0;
+			is_strs_equal = (strcmp(s1, s2) == 0);
+			is_return_equal = (strcmp(s1 + (strlen(s1) - 3), s2 + (strlen(s2) - 3)) == 0);
 			if(is_strs_equal && is_return_equal){
 				testnb++;
 				// printf("\033[38;5;40m%d.OK \033[0m", testnb++);
@@ -122,6 +138,7 @@ void bettercompare(char *s)
 					printf("\nexpected : %s\n", s1 + (strlen(s1) - 3));
 					printf(  "output   : %s\n", s2 + (strlen(s2) - 3));
 				}
+				errornum++;
 			}
 		}
 		index++;

@@ -2,7 +2,7 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 SRC		= main.c tests/print_tests.c tests/test_basic.c tests/test_minus.c tests/test_dot.c \
-			tests/test_number.c 
+			tests/test_number.c print_header.c 
 OBJS	= $(SRC:.c=.o)
 
 all: $(OBJS) printf

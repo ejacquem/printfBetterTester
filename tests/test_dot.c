@@ -88,7 +88,7 @@ static void	test_s()
 
 void	print_test_dot()
 {
-	printf("#Starting dot test \n");
+	printf("#Dot Tests\n");
 	printf("#test %%d \n");
 	test_d();
 	printf("#test %%c \n");

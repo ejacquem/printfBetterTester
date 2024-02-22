@@ -87,7 +87,7 @@ static void	test_s()
 
 void	print_test_minus()
 {
-	printf("#Starting minus test \n");
+	printf("#Minus Tests\n");
 	printf("#test %%d \n");
 	test_d();
 	printf("#test %%c \n");

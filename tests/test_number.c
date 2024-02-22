@@ -90,7 +90,7 @@ static void	test_s()
 
 void	print_test_number()
 {
-	printf("#Starting number test \n");
+	printf("#Number Tests\n");
 	printf("#test %%d \n");
 	test_d();
 	printf("#test %%c \n");

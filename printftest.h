@@ -33,4 +33,10 @@ void	test_pointer(char *s);
 void	test_string(char *s);
 void	test_char(char *s);
 
+
+void print_Header1(int terminalWidth);
+void print_Header2(int terminalWidth, char *s);
+void print_Header3(int terminalWidth, char *s);
+void printn(char c, int n);
+
 #endif

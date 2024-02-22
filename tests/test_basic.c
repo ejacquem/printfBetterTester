@@ -55,7 +55,7 @@ void	test_s()
 
 void	print_test_basic()
 {
-	printf("#Starting basic test \n");
+	printf("#Basic Tests \n");
 	printf("#test %%d \n");
 	test_d();
 	printf("#test %%c \n");
