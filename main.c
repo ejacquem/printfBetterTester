@@ -48,6 +48,7 @@ int main()
 
 	bettercompare(s);
 
+	free(s);
     return 0;
 }
 
@@ -153,6 +154,10 @@ void bettercompare(char *s)
 		s1 = tab[index + 1];
 		s2 = tab[index + 2];
 	}
+	int i = 0;
+	while(tab[i])
+		free(tab[i++]);
+	free(tab);
 	printf("\n");
 }
 
