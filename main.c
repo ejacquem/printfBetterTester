@@ -31,6 +31,7 @@ int main()
 		print_test_dot();
 		print_test_number();
 
+		// print_test_d("%010.5d", 55);
 		// print_test_d("%9%", 0);
 		// print_test_d("%9s%%", 0);
 
@@ -49,18 +50,18 @@ int main()
     return 0;
 }
 
-void	print_colors(char *s, char *input, char *color)
-{
-	if(strcmp("yellow", color) == 0){
-		// printf("\033[38;5;11m");
-		// printf("\x1b[38;2;255;255;0m yellow");
-		printf("\033[38;5;226m");
-		printf(s, input);
-		printf("\033[0m");
-	}
-	else
-		printf("wrong color\n");
-}
+// void	print_colors(char *s, char *input, char *color)
+// {
+// 	if(strcmp("yellow", color) == 0){
+// 		// printf("\033[38;5;11m");
+// 		// printf("\x1b[38;2;255;255;0m yellow");
+// 		printf("\033[38;5;226m");
+// 		printf(s, input);
+// 		printf("\033[0m");
+// 	}
+// 	else
+// 		printf("wrong color\n");
+// }
 
 
 void bettercompare(char *s)
@@ -74,8 +75,10 @@ void bettercompare(char *s)
 	int is_return_equal = 0;
 	int alltestOK = 0;
 	int errornum = 0;
+	int errorSUM = 0;
 
 	int twidth = 60;
+	int render_output = TRUE;
 
 	print_Header1(twidth);
 
@@ -90,12 +93,7 @@ void bettercompare(char *s)
 				else
 				{
 					double percentage = (((testnb - errornum) * 1.0) / (testnb * 1.0)) * 100;
-					if(percentage > 50)
-						printf("\033[38;5;40m");
-					else
-						printf("\033[1;31m");
-
-					printf("\033[38;5;40m\n%3.0f%% tests completed\033[0m", percentage);
+					printf("\n\033[1;4;31m You failed %d out of %d tests (%.f%%)\033[0m\n", errornum, testnb, percentage);
 				}
 			}
 			if(strncmp(s0, "#END", 4) == 0)
@@ -103,12 +101,10 @@ void bettercompare(char *s)
 			if(strncmp(s0, "#test", 4) == 0)
 			{
 				print_Header3(twidth, s0);
-				// printf("\n\033[1;36m%s------------------------------------------------------------------------\n\033[0m", s0);
 			}
 			else
 				print_Header2(twidth, s0);
-				// print_colors("\n\n %s \n", s0, "yellow");
-			testnb = 0;
+			testnb = 0;errornum = 0;
 			alltestOK = 1;
 		}
 		else if (strncmp(s0, "input :", 5) == 0)
@@ -121,24 +117,34 @@ void bettercompare(char *s)
 			}
 			else{
 				alltestOK = 0;
-				printf("\n\033[1;31m%d.KO\033[0m", testnb++);
-				if(is_strs_equal == 0)
-					printf("\033[1;31m The output is wrong. \033[0m");
-				if(is_return_equal == 0)
-					printf("\033[1;31m The return value is wrong.\033[0m");
-				if(is_return_equal == 0 || is_strs_equal == 0)
-					printf("\n%s", s0);
-				if(is_strs_equal == 0 || 1)
+				if(render_output == TRUE)
 				{
-					printf("\nexpected : %.*s\n", (int)(strlen(s1) - 3), s1);
-					printf(  "output   : %.*s\n", (int)(strlen(s2) - 3), s2);
+					printf("\n\033[1;31m%d.KO\033[0m", testnb);
+					if(is_strs_equal == 0)
+						printf("\033[31m The output is wrong. \033[0m");
+					if(is_return_equal == 0)
+						printf("\033[31m The return value is wrong.\033[0m");
+					if(is_return_equal == 0 || is_strs_equal == 0)
+						printf("\n%s", s0);
+					if(is_strs_equal == 0 || 1)
+					{
+						printf("\nexpected %.*s\n", (int)(strlen(s1) - 3), s1);
+						printf(  "output   %.*s\n", (int)(strlen(s2) - 3), s2);
+					}
+					if(is_return_equal == 0)
+					{
+						printf("\nexpected %s\n", s1 + (strlen(s1) - 3));
+						printf(  "output   %s\n", s2 + (strlen(s2) - 3));
+					}
 				}
-				if(is_return_equal == 0)
-				{
-					printf("\nexpected : %s\n", s1 + (strlen(s1) - 3));
-					printf(  "output   : %s\n", s2 + (strlen(s2) - 3));
-				}
+				testnb++;
 				errornum++;
+				errorSUM++;
+			}
+			if(render_output == TRUE && errorSUM > 30)
+			{
+				printf("\033[1;31m\nTOO MANY ERROR : STOP\n\033[0m");
+				break;
 			}
 		}
 		index++;
@@ -146,6 +152,7 @@ void bettercompare(char *s)
 		s1 = tab[index + 1];
 		s2 = tab[index + 2];
 	}
+	printf("\n");
 }
 
 char *readFileToString(const char *filename)

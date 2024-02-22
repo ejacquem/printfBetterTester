@@ -28,6 +28,7 @@ void	test_number(char *s)
 void	test_pointer(char *s)
 {
 	char a, b, c, d;
+	a = b = c = d = 0;
 	print_test_p(s, &a);
 	print_test_p(s, &b);
 	print_test_p(s, &c);
