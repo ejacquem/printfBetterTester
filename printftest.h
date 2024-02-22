@@ -6,6 +6,9 @@
 #ifndef PRINTFTEST_H
 # define PRINTFTEST_H
 
+
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 #define pointer (void *)(long long)
 
 char *readFileToString(const char *filename);
