@@ -2,12 +2,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 #ifndef PRINTFTEST_H
 # define PRINTFTEST_H
 
 
 # define MAX_INT 2147483647
+# define MAX_UINT 4294967295
+# define MAX_ULLONG 18446744073709551615ULL
 # define MIN_INT -2147483648
 #define pointer (void *)(long long)
 
@@ -34,10 +39,13 @@ void	test_pointer(char *s);
 void	test_string(char *s);
 void	test_char(char *s);
 
-
 void print_Header1(int terminalWidth);
 void print_Header2(int terminalWidth, char *s);
 void print_Header3(char *s);
 void printn(char c, int n);
+
+//Utils
+char	**split(char const *s, char c);
+int getTerminalWidth();
 
 #endif

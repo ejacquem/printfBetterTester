@@ -95,8 +95,7 @@ void print_Header3(char *s)
 {
 	printf(BLUE1);
 	printf(BOLD);
-	printf("\n\n%s#", s);
-	printf("\n");
+	printf("\n%-25s", s);
 	printf(RESET);
 }
 

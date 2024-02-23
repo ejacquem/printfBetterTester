@@ -1,26 +1,19 @@
 
 #include "printftest.h"
 
-#include <stdio.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-
 void bettercompare(char *s);
 
 const char* filename = "output.txt";
 int testnb = 0;
 int printf_result = 0;
 int ft_printf_result = 0;
+int short_output = FALSE;
 
-int getTerminalWidth()
+int main(int argc, char **argv)
 {
-    struct winsize w;
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-    return w.ws_col;
-}
-
-int main()
-{
+	if(argc >= 2)
+		short_output = argv[1][0] - '0';
+	printf("\xF0\x9F\x98\x8A\n");
     FILE *file = fopen(filename, "w");
     
     if (file != NULL) {
@@ -36,7 +29,7 @@ int main()
 		// print_test_d("%9%", 0);
 		// print_test_d("%9s%%", 0);
 
-		printf("#END OF FILE\n#END OF FILE\n#END OF FILE\n");
+		printf("#END OF TESTS\n#END OF TESTS\n#END OF TESTS\n");
 
 		freopen("/dev/tty", "w", stdout);
         fclose(file);
@@ -47,40 +40,41 @@ int main()
 	char *s = readFileToString(filename);
 
 	bettercompare(s);
-
+	
 	free(s);
     return 0;
 }
 
-// void	print_colors(char *s, char *input, char *color)
-// {
-// 	if(strcmp("yellow", color) == 0){
-// 		// printf("\033[38;5;11m");
-// 		// printf("\x1b[38;2;255;255;0m yellow");
-// 		printf("\033[38;5;226m");
-// 		printf(s, input);
-// 		printf("\033[0m");
-// 	}
-// 	else
-// 		printf("wrong color\n");
-// }
+void	printresult(int testnb, int errornb)
+{
+	double percentage = (((testnb - errornb) * 1.0) / (testnb * 1.0)) * 100;
+	if(percentage >= 100)
+	{
+		printf("\n\033[1;4;38;5;40m#All %3d tests OK, Congrats ! \033[0m", testnb);
+	}
+	else
+	{
+		printf("\n\033[1;4;31m#You passed %d out of %d tests (%.2f%%)\033[0m\n", testnb - errornb, testnb, percentage);
+	}
+}
 
-
+/*
+Short answer will print only error and up to 20 errors at a time.
+Will also print the percentage off success per category
+*/
 void bettercompare(char *s)
 {
-	char **tab = ft_split(s, '\n');
+	char **tab = split(s, '\n');
 	int index = 0;
 	char *s0 = tab[0];
 	char *s1 = tab[1];
 	char *s2 = tab[2];
 	int is_strs_equal = 0;
 	int is_return_equal = 0;
-	int alltestOK = 0;
-	int errornum = 0;
+	int errornb = 0;
 	int errorSUM = 0;
 
 	int twidth = getTerminalWidth();
-	int render_output = TRUE;
 
 	print_Header1(twidth);
 
@@ -88,26 +82,31 @@ void bettercompare(char *s)
 	{
 		if (*s0 == '#')
 		{
-			if(testnb)
+			if(testnb && short_output == FALSE)
 			{
-				if(alltestOK)
-					printf("\n\033[1;38;5;40m#All %3d tests OK, Congrats ! \033[0m", testnb);
-				else
+				printresult(testnb, errornb);
+				testnb = 0;errornb = 0;
+			}
+			if(strncmp(s0, "#TEST", 4) == 0)
+			{
+				if(short_output == FALSE)
 				{
-					double percentage = (((testnb - errornum) * 1.0) / (testnb * 1.0)) * 100;
-					printf("\n\033[1;4;31m You failed %d out of %d tests (%.f%%)\033[0m\n", errornum, testnb, percentage);
+					printf("\n");
+					print_Header3(s0);
+					printf("\n");
 				}
+			}
+			else
+			{
+				if(testnb && short_output == TRUE)
+				{
+					printresult(testnb, errornb);
+					testnb = 0;errornb = 0;
+				}
+				print_Header2(twidth, s0);
 			}
 			if(strncmp(s0, "#END", 4) == 0)
 				break;
-			if(strncmp(s0, "#TEST", 4) == 0)
-			{
-				print_Header3(s0);
-			}
-			else
-				print_Header2(twidth, s0);
-			testnb = 0;errornum = 0;
-			alltestOK = 1;
 		}
 		else if (strncmp(s0, "input :", 5) == 0)
 		{
@@ -115,35 +114,32 @@ void bettercompare(char *s)
 			is_return_equal = (strcmp(s1 + (strlen(s1) - 3), s2 + (strlen(s2) - 3)) == 0);
 			if(is_strs_equal && is_return_equal){
 				testnb++;
-				printf("\033[38;5;40m%d.OK \033[0m", testnb);
+				if(short_output == FALSE)
+					printf("\033[38;5;40m%d.OK \033[0m", testnb);
 			}
 			else{
-				alltestOK = 0;
-				if(render_output == TRUE)
+				printf("\n\033[1;31m%d.KO\033[0m", testnb);
+				if(is_strs_equal == 0)
+					printf("\033[31m The output is wrong. \033[0m");
+				if(is_return_equal == 0)
+					printf("\033[31m The return value is wrong.\033[0m");
+				if(is_return_equal == 0 || is_strs_equal == 0)
+					printf("\n%s", s0);
+				if(is_strs_equal == 0 || 1)
 				{
-					printf("\n\033[1;31m%d.KO\033[0m", testnb);
-					if(is_strs_equal == 0)
-						printf("\033[31m The output is wrong. \033[0m");
-					if(is_return_equal == 0)
-						printf("\033[31m The return value is wrong.\033[0m");
-					if(is_return_equal == 0 || is_strs_equal == 0)
-						printf("\n%s", s0);
-					if(is_strs_equal == 0 || 1)
-					{
-						printf("\nexpected %.*s\n", (int)(strlen(s1) - 3), s1);
-						printf(  "output   %.*s\n", (int)(strlen(s2) - 3), s2);
-					}
-					if(is_return_equal == 0)
-					{
-						printf("\nexpected %s\n", s1 + (strlen(s1) - 3));
-						printf(  "output   %s\n", s2 + (strlen(s2) - 3));
-					}
+					printf("\nexpected %.*s\n", (int)(strlen(s1) - 3), s1);
+					printf(  "output   %.*s\n", (int)(strlen(s2) - 3), s2);
+				}
+				if(is_return_equal == 0)
+				{
+					printf("\nexpected %s\n", s1 + (strlen(s1) - 3));
+					printf(  "output   %s\n", s2 + (strlen(s2) - 3));
 				}
 				testnb++;
-				errornum++;
+				errornb++;
 				errorSUM++;
 			}
-			if(render_output == TRUE && errorSUM > 30)
+			if(short_output == TRUE && errorSUM > 30)
 			{
 				printf("\033[1;31m\nTOO MANY ERROR : STOP\n\033[0m");
 				break;

@@ -56,20 +56,20 @@ void	test_s()
 void	print_test_basic_extended()
 {
 	printf("#Basic Tests Extended\n");
-	printf("#TEST DECIMAL (%%d) \n");
+	printf("#TEST Decimal (%%d) \n");
 	test_c();
-	printf("#TEST INTEGER (%%i) \n");
+	printf("#TEST Integer (%%i) \n");
 	test_d();
-	printf("#TEST CHARACTER (%%c) \n");
+	printf("#TEST Character (%%c) \n");
 	test_i();
-	printf("#TEST UNSIGNED INT (%%u) \n");
+	printf("#TEST Unsigned Int (%%u) \n");
 	test_u();
-	printf("#TEST HEXADECIMAL (%%x) \n");
+	printf("#TEST Hexadecimal (%%x) \n");
 	test_x();
-	printf("#TEST HEXADECIMAL (uppercase) (%%X) \n");
+	printf("#TEST HEXADECIMAL (%%X) \n");
 	test_X();
-	printf("#TEST POINTER (%%p) \n");
+	printf("#TEST Pointer (%%p) \n");
 	test_p();
-	printf("#TEST STRING (%%s) \n");
+	printf("#TEST String (%%s) \n");
 	test_s();
 }
