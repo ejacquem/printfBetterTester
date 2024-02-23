@@ -9,7 +9,8 @@
 #ifndef PRINTFTEST_H
 # define PRINTFTEST_H
 
-
+# define FALSE 0
+# define TRUE 1
 # define MAX_INT 2147483647
 # define MAX_UINT 4294967295
 # define MAX_ULLONG 18446744073709551615ULL

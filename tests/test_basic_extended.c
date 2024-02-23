@@ -57,11 +57,11 @@ void	print_test_basic_extended()
 {
 	printf("#Basic Tests Extended\n");
 	printf("#TEST Decimal (%%d) \n");
-	test_c();
-	printf("#TEST Integer (%%i) \n");
 	test_d();
-	printf("#TEST Character (%%c) \n");
+	printf("#TEST Integer (%%i) \n");
 	test_i();
+	printf("#TEST Character (%%c) \n");
+	test_c();
 	printf("#TEST Unsigned Int (%%u) \n");
 	test_u();
 	printf("#TEST Hexadecimal (%%x) \n");

@@ -8,7 +8,6 @@ OBJS	= $(SRC:.c=.o)
 all: $(OBJS) printf
 	$(CC) $(CFLAGS) $(OBJS) -L../ -lftprintf -o run_test
 	make clean
-	clear
 	./run_test
 
 # run:
@@ -25,7 +24,6 @@ re: fclean all
 short: $(OBJS) printf
 	$(CC) $(CFLAGS) $(OBJS) -L../ -lftprintf -o run_test
 	make clean
-	clear
 	./run_test 1
 
 printf:
