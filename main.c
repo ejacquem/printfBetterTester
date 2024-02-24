@@ -8,6 +8,7 @@ int testnb = 0;
 int printf_result = 0;
 int ft_printf_result = 0;
 int short_output = FALSE;
+int only_basic = FALSE;
 
 int main(int argc, char **argv)
 {
@@ -22,9 +23,12 @@ int main(int argc, char **argv)
 	
 		print_test_basic();
 		print_test_basic_extended();
+
 		print_test_number();
 		print_test_minus();
 		print_test_dot();
+		print_test_zero();
+		print_test_mix();
 
 		// print_test_d("%010.5d", 55);
 		// print_test_d("%9%", 0);
@@ -45,7 +49,6 @@ int main(int argc, char **argv)
 	free(s);
     return 0;
 }
-
 void	printresult(int testnb, int errornb)
 {
 	double percentage = (((testnb - errornb) * 1.0) / (testnb * 1.0)) * 100;
@@ -128,10 +131,17 @@ void bettercompare(char *s)
 					printf("\n\033[1;31m%d.KO \033[0m", testnb);
 				if (errorSUM < 15 && short_output == FALSE)
 				{
-					if(is_strs_equal == 0)
+					if(is_strs_equal == 0){
 						printf("\033[31m The output is wrong. \033[0m");
-					if(is_return_equal == 0)
+						if(is_return_equal == 1)
+							printf("\033[38;5;40m But the return value is correct.\033[0m");
+					}
+					if(is_return_equal == 0){
 						printf("\033[31m The return value is wrong.\033[0m");
+						if(is_strs_equal == 1)
+							printf("\033[38;5;40m But the output value is correct.\033[0m");
+					}
+
 					if(is_return_equal == 0 || is_strs_equal == 0)
 						printf("\n%s", s0);
 					if(is_strs_equal == 0)
@@ -271,9 +281,13 @@ void print_advanced_test_d()
 
 void print_test_mix()
 {
-	char *s = "%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%";
-	printf_result = printf(s, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
-	ft_printf_result = ft_printf(s, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	char *s = "%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%d%%%s%%%d%%%i%%%u%%%x%%%X%%%% %d%%";
+	printf("#TEST Mix\n");
+	printf("input : mix\n");
+	printf("|");
+	printf("|%4d\n", printf(s, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0));
+	printf("|");fflush(stdout);
+	printf("|%4d\n", ft_printf(s, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0));
 }
 
 void print_advanced_test_p()

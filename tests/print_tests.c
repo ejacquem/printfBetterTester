@@ -4,9 +4,10 @@ void	test_number(char *s)
 {
 	print_test_d(s, 42);
 	print_test_d(s, 0);
+	print_test_d(s, 1);
+	print_test_d(s, -1);
 	print_test_d(s, 15);
 	print_test_d(s, 16);
-	print_test_d(s, -1);
 	print_test_d(s, MAX_INT);
 	print_test_d(s, MIN_INT);
 	print_test_d(s, 1000000000);
