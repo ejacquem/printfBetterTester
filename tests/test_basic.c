@@ -32,8 +32,6 @@ void	print_test_basic()
 	print_test_d("%u", (MAX_UINT * -1));
 	print_test_d("%u", 2147483648U);
 	print_test_d("%u", -1);
-	print_test_d("%u", (unsigned int) MAX_LONG);
-	print_test_d("%u", (unsigned int) MIN_LONG);
 
 	print_test_d("%x", 0);
 	print_test_d("%x", 1);
@@ -62,4 +60,33 @@ void	print_test_basic()
 	print_test_p("%p", &a);
 	print_test_p("%p", &b);
 	print_test_p("%p", 0);
+	print_test_p("%p", 0xFFFFFFFFFFFFFFFF);
+	print_test_p("%p", 0x7FFFFFFFFFFFFFFF);
+	print_test_p("%p", 0xFFFFFFFF80000000);
+
+//tests if the input is correctly cast
+	print_test_l("%d", MAX_LONG);
+	print_test_l("%d", MIN_LONG);
+	print_test_l("%d", MAX_ULLONG);
+	print_test_l("%d", MAX_UINT);
+
+	print_test_l("%i", MAX_LONG);
+	print_test_l("%i", MIN_LONG);
+	print_test_l("%i", MAX_ULLONG);
+	print_test_l("%i", MAX_UINT);
+
+	print_test_l("%u", MAX_LONG);
+	print_test_l("%u", MIN_LONG);
+	print_test_l("%u", MAX_ULLONG);
+	print_test_l("%u", MAX_UINT);
+
+	print_test_l("%x", MAX_LONG);
+	print_test_l("%x", MIN_LONG);
+	print_test_l("%x", MAX_ULLONG);
+	print_test_l("%x", MAX_UINT);
+
+	print_test_l("%X", MAX_LONG);
+	print_test_l("%X", MIN_LONG);
+	print_test_l("%X", MAX_ULLONG);
+	print_test_l("%X", MAX_UINT);
 }

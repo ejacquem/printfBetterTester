@@ -9,6 +9,8 @@ int printf_result = 0;
 int ft_printf_result = 0;
 int short_output = FALSE;
 
+void print_test_l(char *s, long input);
+
 int main(int argc, char **argv)
 {
 	int only_basic = FALSE;
@@ -38,6 +40,8 @@ int main(int argc, char **argv)
 			print_test_mix();
 			print_test_bonus();
 		}
+
+		// print_test_l("%u", MAX_LONG);
 
 		// print_test_d("%010.5d", 55);
 		// print_test_d("%9%", 0);
@@ -337,6 +341,15 @@ void print_test_s(char *s, char *input)
 void print_test_p(char *s, const void *input)
 {
 	printf("input : (\"%s\", %p)\n", s, input);
+	printf("|");
+	printf("|%4d\n", printf(s, input));
+	printf("|");fflush(stdout);
+	printf("|%4d\n", ft_printf(s, input));
+}
+
+void print_test_l(char *s, long input)
+{
+	printf("input : (\"%s\", %ld)\n", s, input);
 	printf("|");
 	printf("|%4d\n", printf(s, input));
 	printf("|");fflush(stdout);
