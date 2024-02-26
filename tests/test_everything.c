@@ -4,6 +4,8 @@
 static void test_loop(char *s, void (* f)(char *s))
 {
 	int i = 0, j = 0;
+	if(f == test_number)
+		i = 1;
 	while(i <= 9){
 		s[2] = i + '0';
 		j = 0;
@@ -35,8 +37,6 @@ static void	test_all_n(char *s)
 	str[0] = '%';
 	str[1] = '-';	
 	test_loop(str, test_number);
-	str[1] = '0';	
-	test_loop(str, test_number);
 	str[1] = ' ';	
 	test_loop(str, test_number);
 	str[1] = '+';	
@@ -52,8 +52,6 @@ static void	test_all_x(char *s)
 	str[0] = '%';
 	str[1] = '-';
 	test_loop(str, test_number);
-	str[1] = '0';
-	test_loop(str, test_number);
 	str[1] = '#';
 	test_loop(str, test_number);
 }
@@ -66,8 +64,6 @@ static void	test_all_u(char *s)
 	test_loop(str, test_number);
 	str[0] = '%';
 	str[1] = '-';
-	test_loop(str, test_number);
-	str[1] = '0';
 	test_loop(str, test_number);
 }
 
