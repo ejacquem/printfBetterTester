@@ -14,8 +14,14 @@
 # define MAX_INT 2147483647
 # define MAX_UINT 4294967295
 # define MAX_ULLONG 18446744073709551615ULL
+# define MAX_LONG 9223372036854775807L
+# define MIN_LONG 9223372036854775807L + 1
 # define MIN_INT -2147483648
-#define pointer (void *)(long long)
+# define pointer (void *)(long long)
+
+// −9,223,372,036,854,775,808.
+	// TEST(24, print(" %u ", LONG_MAX));
+	// TEST(25, print(" %u ", LONG_MIN));
 
 char *readFileToString(const char *filename);
 

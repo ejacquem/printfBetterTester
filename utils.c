@@ -17,12 +17,14 @@ char	*substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	len = min(len, (strlen(s) - start));
 	c = malloc(len + 1);
-	if (c != NULL)
+	if (c == NULL)
 	{
-		if (len > 0)
-			memcpy(c, (s + start), len);
-		c[len] = 0;
+		printf("MEMORY ERROR IN SPLIT\n");
+		return NULL;
 	}
+	if (len > 0)
+		memcpy(c, (s + start), len);
+	c[len] = 0;
 	return (c);
 }
 
@@ -66,7 +68,10 @@ char	**split(char const *s, char c)
 		return (NULL);
 	tab = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (tab == NULL)
+	{
+		printf("MEMORY ERROR IN SPLIT\n");
 		return (NULL);
+	}
 	i = 0;
 	while (*s)
 	{

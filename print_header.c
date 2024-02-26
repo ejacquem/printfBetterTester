@@ -14,7 +14,6 @@
 #define BLUE6     "\x1b[38;5;99m"
 
 void print_center(char *color, char *line, int len);
-
 void print_Header1(int terminalWidth)
 {
 	printf(BLUE4);

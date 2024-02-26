@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 	char *s = readFileToString(filename);
 
 	bettercompare(s);
-	
+	fflush(stdout);
 	free(s);
     return 0;
 }
