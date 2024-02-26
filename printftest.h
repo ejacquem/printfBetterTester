@@ -34,6 +34,7 @@ void	print_test_number();
 void	print_test_minus();
 void	print_test_dot();
 void	print_test_zero();
+void	print_test_bonus();
 
 
 void	test_number(char *s);

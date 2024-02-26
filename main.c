@@ -8,14 +8,19 @@ int testnb = 0;
 int printf_result = 0;
 int ft_printf_result = 0;
 int short_output = FALSE;
-int only_basic = FALSE;
 
 int main(int argc, char **argv)
 {
-	system("clear");
+	int only_basic = FALSE;
+	// system("clear");
 	if(argc >= 2)
-		short_output = argv[1][0] - '0';
-	printf("\xF0\x9F\x98\x8A\n");
+	{
+		if (argv[1][0] == 's')
+			short_output = 1;
+		if (argv[1][0] == 'b')
+			only_basic = TRUE;
+	}
+	// printf("\xF0\x9F\x98\x8A\n");
     FILE *file = fopen(filename, "w");
     
     if (file != NULL) {
@@ -24,11 +29,15 @@ int main(int argc, char **argv)
 		print_test_basic();
 		print_test_basic_extended();
 
-		print_test_number();
-		print_test_minus();
-		print_test_dot();
-		print_test_zero();
-		print_test_mix();
+		if(only_basic == FALSE)
+		{
+			print_test_number();
+			print_test_minus();
+			print_test_dot();
+			print_test_zero();
+			print_test_mix();
+			print_test_bonus();
+		}
 
 		// print_test_d("%010.5d", 55);
 		// print_test_d("%9%", 0);
