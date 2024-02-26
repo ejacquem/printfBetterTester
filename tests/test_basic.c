@@ -28,6 +28,10 @@ void	print_test_basic()
 	print_test_d("%u", 0);
 	print_test_d("%u", MAX_INT);
 	print_test_d("%u", MIN_INT);
+	print_test_d("%u", MAX_UINT);
+	print_test_d("%u", (MAX_UINT * -1));
+	print_test_d("%u", 2147483648U);
+	print_test_d("%u", -1);
 	print_test_d("%u", (unsigned int) MAX_LONG);
 	print_test_d("%u", (unsigned int) MIN_LONG);
 
