@@ -50,21 +50,27 @@ static void	test_X()
 static void	test_p()
 {
 		test_pointer("%0p");
+		test_pointer("%1p");
+		test_pointer("%2p");
 		test_pointer("%3p");
 		test_pointer("%4p");
 		test_pointer("%5p");
 		test_pointer("%6p");
+		test_pointer("%7p");
 		test_pointer("%20p");
 }
 
 static void	test_s()
 {
 		test_string("%0s");
+		test_string("%1s");
+		test_string("%2s");
 		test_string("%3s");
 		test_string("%4s");
 		test_string("%5s");
 		test_string("%6s");
 		test_string("%7s");
+		test_string("%8s");
 		test_string("%20s");
 }
 

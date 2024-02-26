@@ -228,70 +228,6 @@ char *readFileToString(const char *filename)
     return buffer;
 }
 
-void print_advanced_test_s()
-{
-	print_test_s("%s","Hello");
-	print_test_s("%s","");
-	print_test_s("%s","H");	print_test_s("%10s","Hello");
-	/*2*/
-	print_test_s("%-10s","Hello");
-	/*3*/
-	print_test_s("%.4s","Hello");
-	/*4*/
-	print_test_s("%.3s","Hello");
-	/*5*/
-	print_test_s("%.2s","Hello");
-	/*6*/
-	print_test_s("%.1s","Hello");
-	/*7*/
-	print_test_s("%.0s","Hello");
-	/*8*/
-	print_test_s("%.s","Hello");
-	/*9*/
-	print_test_s("%10.4s","Hello");
-	/*10*/
-	print_test_s("%10.2s","Hello");
-	/*11*/
-	print_test_s("%10.s","Hello");
-	/*12*/
-}
-
-void print_advanced_test_u()
-{
-	print_test_d("%u",0);
-	print_test_d("%u",1);
-	print_test_d("%u",-1);
-	print_test_d("%10u",0);
-	print_test_d("%10u",1);
-	print_test_d("%10u",-1);
-	print_test_d("%-10u",1);
-	print_test_d("%.10u",1);
-	print_test_d("%10.5u",1);
-	print_test_d("%010u",1);
-}
-
-void print_advanced_test_d()
-{
-	print_test_d("%d",0);
-	print_test_d("%d",1);
-	print_test_d("%d",-1);
-	print_test_d("%d",MAX_INT);
-	print_test_d("%d",MIN_INT);
-	print_test_d("%10d",0);
-	print_test_d("%10d",1);
-	print_test_d("%10d",-1);
-	print_test_d("%-10d",1);
-	print_test_d("%.10d",1);
-	print_test_d("%10.5d",1);
-	print_test_d("%010d",1);
-	print_test_d("%10d",-1);
-	print_test_d("%-10d",-1);
-	print_test_d("%.10d",-1);
-	print_test_d("%10.5d",-1);
-	print_test_d("%010d",-1);
-
-}
-
 void print_test_mix()
 {
 	char *s = "%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%d%%%s%%%d%%%i%%%u%%%x%%%X%%%% %d%%";
@@ -302,23 +238,6 @@ void print_test_mix()
 	printf("|");fflush(stdout);
 	printf("|%4d\n", ft_printf(s, 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0));
 }
-
-void print_advanced_test_p()
-{
-	print_test_p("%-11p",(void *)(long long)MIN_INT);
-	print_test_p("%-11p",(void *)(long long)MIN_INT);
-	print_test_p("%-12p",(void *)(long long)MAX_INT);
-	print_test_p("%-13p",(void *)(long long)18446744073709551615UL);
-	print_test_p("%-14p",(void *)(long long)0);
-
-	print_test_p("%11p",(void *)(long long)MIN_INT);
-	print_test_p("%11p",(void *)(long long)MIN_INT);
-	print_test_p("%12p",(void *)(long long)MAX_INT);
-	print_test_p("%13p",(void *)(long long)18446744073709551615UL);
-	print_test_p("%14p",(void *)(long long)0);
-
-}
-
 
 void print_test_d(char *s, int input)
 {
