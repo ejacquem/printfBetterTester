@@ -60,9 +60,9 @@ void	print_test_basic()
 	print_test_p("%p", &a);
 	print_test_p("%p", &b);
 	print_test_p("%p", 0);
-	print_test_p("%p", 0xFFFFFFFFFFFFFFFF);
-	print_test_p("%p", 0x7FFFFFFFFFFFFFFF);
-	print_test_p("%p", 0xFFFFFFFF80000000);
+	print_test_p("%p", pointer 0xFFFFFFFFFFFFFFFFUL);
+	print_test_p("%p", pointer 0x7FFFFFFFFFFFFFFFUL);
+	print_test_p("%p", pointer 0xFFFFFFFF80000000UL);
 
 //tests if the input is correctly cast
 	print_test_l("%d", MAX_LONG);

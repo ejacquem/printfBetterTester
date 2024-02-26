@@ -13,9 +13,9 @@
 # define TRUE 1
 # define MAX_INT 2147483647
 # define MAX_UINT 4294967295U
-# define MAX_ULLONG 18446744073709551615ULL
-# define MAX_LONG 9223372036854775807L
-# define MIN_LONG 9223372036854775807L + 1
+# define MAX_ULLONG 0xFFFFFFFFFFFFFFFF
+# define MAX_LONG 0x7FFFFFFFFFFFFFFF
+# define MIN_LONG 0x8000000000000000
 # define MIN_INT -2147483648
 # define pointer (void *)(long long)
 
@@ -30,6 +30,7 @@ void print_advanced_test_u();
 void print_advanced_test_d();
 void print_advanced_test_p();
 void print_test_mix();
+void print_test_l(char *s, long d);
 void print_test_d(char *s, int d);
 void print_test_s(char *s, char *input);
 void print_test_p(char *s, const void *input);
