@@ -3,6 +3,7 @@
 void	print_test_basic()
 {
 	printf("#Basic Tests\n");
+
 	print_test_d("%d", 42);
 	print_test_d("%d", 0);
 	print_test_d("%d", MAX_INT);
@@ -89,4 +90,8 @@ void	print_test_basic()
 	print_test_l("%X", MIN_LONG);
 	print_test_l("%X", MAX_ULLONG);
 	print_test_l("%X", MAX_UINT);
+
+	print_test_d("%%%%%d", 42);
+	print_test_d("%%%d", 42);
+	print_test_d("%%", 42);
 }

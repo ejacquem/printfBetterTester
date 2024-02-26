@@ -1,7 +1,7 @@
 CFLAGS	= -Wall -Wextra -Werror
 
 SRC		= main.c tests/print_tests.c tests/test_basic_extended.c tests/test_basic.c tests/test_minus.c tests/test_dot.c \
-			tests/test_number.c print_header.c utils.c tests/test_zero.c tests/test_allbonus.c
+			tests/test_number.c print_header.c utils.c tests/test_zero.c tests/test_allbonus.c tests/test_everything.c
 OBJS	= $(SRC:.c=.o)
 
 all: compile

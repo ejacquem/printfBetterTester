@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 			print_test_zero();
 			print_test_mix();
 			print_test_bonus();
+			print_test_everything();
 		}
 
 		// print_test_l("%u", MAX_LONG);

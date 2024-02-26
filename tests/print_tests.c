@@ -30,6 +30,7 @@ void	test_string(char *s)
 {
 	print_test_s(s, "Hello World !");
 	print_test_s(s, "42");
+	print_test_s(s, "a");
 	print_test_s(s, "");
 	print_test_s(s, 0);
 }
