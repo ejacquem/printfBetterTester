@@ -1,7 +1,8 @@
-
 #include "printftest.h"
 #include <signal.h>
 #include <stdlib.h>
+
+#define MAX_ERROR_NB 20
 
 void bettercompare(char *s);
 
@@ -10,6 +11,7 @@ int testnb = 0;
 int printf_result = 0;
 int ft_printf_result = 0;
 int short_output = FALSE;
+
 
 void print_test_l(char *s, long input);
 
@@ -25,8 +27,8 @@ void segfault_handler(int signum) {
 
 	bettercompare(s);
 
-    printf("\n\033[1;31mERROR : Your function crashed !!!\n\n\033[0m");
-	printf("\x1b[38;5;87mYou can check \"output.txt\" for more information \n\n\033[0m");
+    printf("\n\033[1;38;5;226mERROR : Your function crashed. Stop Testing.\n\033[0m");
+	printf("\033[38;5;226mYou can check \"output.txt\" for more information \n\n\033[0m");
 	
     exit(signum);
 }
@@ -172,7 +174,7 @@ void bettercompare(char *s)
 			{
 				if (short_output == FALSE)
 					printf("\n\033[1;31m%d.KO \033[0m", testnb);
-				if (errorSUM < 15 && short_output == FALSE)
+				if (errorSUM < MAX_ERROR_NB && short_output == FALSE)
 				{
 					if(is_strs_equal == 0){
 						printf("\033[31m The output is wrong. \033[0m");
@@ -203,10 +205,10 @@ void bettercompare(char *s)
 			}
 			testnb++;
 			TotalTest++;
-			if(errorSUM == 15 && short_output == FALSE)
+			if(errorSUM == MAX_ERROR_NB && short_output == FALSE)
 			{
 				short_output = TRUE;
-				printf("\033[1;31m\nTOO MANY ERROR : STOP PRINTING OUTPUT\n\033[0m");
+				printf("\033[38;5;226m\n\nMaximum error number (20) reached, stop printing output to not overflow the terminal. (test will continue in short format)\n\033[0m");
 				// break;
 			}
 		}
@@ -230,12 +232,10 @@ char *readFileToString(const char *filename)
         return NULL;
     }
 
-    // Determine the file size
     fseek(file, 0, SEEK_END);
     long fileSize = ftell(file);
     fseek(file, 0, SEEK_SET);
 
-    // Allocate memory for the string
     char *buffer = (char *)malloc(fileSize + 1);
     if (buffer == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
@@ -243,7 +243,6 @@ char *readFileToString(const char *filename)
         return NULL;
     }
 
-    // Read the file into the string buffer
     size_t bytesRead = fread(buffer, 1, fileSize, file);
     if ((long)bytesRead != fileSize) {
         fprintf(stderr, "Error reading file %s\n", filename);
@@ -251,9 +250,8 @@ char *readFileToString(const char *filename)
         free(buffer);
         return NULL;
     }
-    buffer[bytesRead] = '\0'; // Null-terminate the string
+    buffer[bytesRead] = '\0';
 
-    // Close the file and return the string
     fclose(file);
     return buffer;
 }
