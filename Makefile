@@ -21,6 +21,9 @@ short: compile
 basic: compile
 	./run_test b
 
+everything: compile
+	./run_test e
+
 compile: $(OBJS) printf
 	$(CC) $(CFLAGS) $(OBJS) -L.. -lftprintf -o run_test
 	make clean

@@ -67,6 +67,17 @@ static void	test_all_u(char *s)
 	test_loop(str, test_number);
 }
 
+static void	test_all_p(char *s)
+{
+	char	str[8];
+	memcpy(str, s, 8);
+
+	test_loop(str, test_number);
+	str[0] = '%';
+	str[1] = '-';
+	test_loop(str, test_number);
+}
+
 void	print_test_everything()
 {
 	printf("#Testing Every Value\n");
@@ -82,4 +93,6 @@ void	print_test_everything()
 	test_all_x(" %*.*x");
 	printf("#TEST HEXADECIMAL (%%X) \n");
 	test_all_x(" %*.*X");
+	printf("#TEST Pointer (%%p) \n");
+	test_all_p(" %*.*p");
 }

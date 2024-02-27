@@ -99,4 +99,16 @@ void	print_test_bonus()
 	test_p();
 	printf("#TEST String (%%s) \n");
 	test_s();
+	printf("#TEST special (%%s) \n");
+
+	print_test_d("%+1.0i", 0);
+	print_test_d("%+8.0d", 0);
+	print_test_d("%+5.0i", 0);
+	print_test_d("%-+6.0i", 0);
+	print_test_d("%+-7.0i", 0);
+	print_test_d("%+-0.0i", 0);
+	print_test_d("%+-8.0i", -1);
+	print_test_d("% 5.0i", 0);
+	print_test_d("%5.0i", 0);
+	print_test_d("%5.1i", 0);
 }

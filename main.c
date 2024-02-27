@@ -14,6 +14,7 @@ void print_test_l(char *s, long input);
 int main(int argc, char **argv)
 {
 	int only_basic = FALSE;
+	int only_everything = FALSE;
 	// system("clear");
 	if(argc >= 2)
 	{
@@ -21,6 +22,8 @@ int main(int argc, char **argv)
 			short_output = 1;
 		if (argv[1][0] == 'b')
 			only_basic = TRUE;
+		if (argv[1][0] == 'e')
+			only_everything = TRUE;
 	}
 	// printf("\xF0\x9F\x98\x8A\n");
     FILE *file = fopen(filename, "w");
@@ -28,19 +31,28 @@ int main(int argc, char **argv)
     if (file != NULL) {
         freopen("output.txt", "w", stdout);
 	
-		print_test_basic();
-		print_test_basic_extended();
-
-		if(only_basic == FALSE)
-		{
-			print_test_number();
-			print_test_minus();
-			print_test_dot();
-			print_test_zero();
-			print_test_mix();
-			print_test_bonus();
+		if (only_everything)
 			print_test_everything();
+		else
+		{
+			if(only_basic)
+			{
+				print_test_basic();
+				print_test_basic_extended();
+			}
+			else
+			{
+				print_test_number();
+				print_test_minus();
+				print_test_dot();
+				print_test_zero();
+				print_test_mix();
+				print_test_bonus();
+				if (short_output)
+					print_test_everything();
+			}
 		}
+
 
 		// print_test_l("%u", MAX_LONG);
 
