@@ -15,13 +15,13 @@ fclean: clean
 
 re: fclean all
 
-short: compile
+s short: compile
 	./run_test s
 
-basic: compile
+b basic: compile
 	./run_test b
 
-everything: compile
+e everything: compile
 	./run_test e
 
 compile: $(OBJS) printf
