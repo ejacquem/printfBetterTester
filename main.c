@@ -42,6 +42,8 @@ int main(int argc, char **argv)
 			}
 			else
 			{
+				print_test_basic();
+				print_test_basic_extended();
 				print_test_number();
 				print_test_minus();
 				print_test_dot();
