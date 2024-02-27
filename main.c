@@ -14,10 +14,20 @@ int short_output = FALSE;
 void print_test_l(char *s, long input);
 
 void segfault_handler(int signum) {
-    printf("\n\nThe test case above made your ft_printf crash.");
+
+	printf("\n#END OF TESTS\n#END OF TESTS\n#END OF TESTS\n");
+	printf("\n\nThe test case above made your ft_printf crash.\n\n");
+	fflush(stdout);
+	
+	char *s = readFileToString(filename);
+
 	freopen("/dev/tty", "w", stdout);
-    printf("\n\033[1;31mYour function crashed during testing :(\n\033[0m");
-	printf("\x1b[38;5;87mCheck \"output.txt\" for more information \n\n\033[0m");
+
+	bettercompare(s);
+
+    printf("\n\033[1;31mERROR : Your function crashed !!!\n\n\033[0m");
+	printf("\x1b[38;5;87mYou can check \"output.txt\" for more information \n\n\033[0m");
+	
     exit(signum);
 }
 
@@ -65,7 +75,6 @@ int main(int argc, char **argv)
 					print_test_everything();
 			}
 		}
-
 
 		// print_test_l("%u", MAX_LONG);
 
