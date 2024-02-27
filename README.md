@@ -1,6 +1,14 @@
-# printfBetterTester
-printf Tester (2024) for the 42 ft_printf project.
-The program will compare your function output with the real printf and will only show the differences between the two output, including the return value of the functions.
+# PrintfBetterTester
+Printf Tester (2024) for the 42 ft_printf project.
+The program will compare your ft_printf output and return value with the real printf and show the differences between the two output when those are incorrect.
+
+# How to use
+
+Clone the repository in your printf folder with this command :
+```shell
+git clone https://github.com/ejacquem/printfBetterTester.git &&
+cd printfBetterTester && make
+```
 
 # Commands
 
