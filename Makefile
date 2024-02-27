@@ -21,8 +21,8 @@ s short: compile
 b basic: compile
 	./run_test b
 
-e everything: compile
-	./run_test e
+m more: compile
+	./run_test m
 
 compile: $(OBJS) printf
 	$(CC) $(CFLAGS) $(OBJS) -L.. -lftprintf -o run_test

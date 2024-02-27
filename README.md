@@ -16,11 +16,11 @@ Use make commands to recompile the tests every time you make a change.
 
 - **make**: Run every test, including the bonuses.
 
-- **make basic**: Run only the mandatory part.
+- **make basic (b)**: Run only the mandatory part.
 
-- **make short**: Run every test but in a short format.
+- **make short (s)**: Run every test but in a short format.
 
-- **make everything**: Run more than 20,000 tests just in case.
+- **make more  (m)**: Run more than 20,000 tests just in case.
 
 ## basic tests
 ![image](https://github.com/ejacquem/printfBetterTester/assets/99800962/f451a2f3-b9a0-4461-8f82-1d5a832563dc)

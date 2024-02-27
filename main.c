@@ -1,5 +1,7 @@
 
 #include "printftest.h"
+#include <signal.h>
+#include <stdlib.h>
 
 void bettercompare(char *s);
 
@@ -10,6 +12,14 @@ int ft_printf_result = 0;
 int short_output = FALSE;
 
 void print_test_l(char *s, long input);
+
+void segfault_handler(int signum) {
+    printf("\n\nThe test case above made your ft_printf crash.");
+	freopen("/dev/tty", "w", stdout);
+    printf("\n\033[1;31mYour function crashed during testing :(\n\033[0m");
+	printf("\x1b[38;5;87mCheck \"output.txt\" for more information \n\n\033[0m");
+    exit(signum);
+}
 
 int main(int argc, char **argv)
 {
@@ -22,11 +32,12 @@ int main(int argc, char **argv)
 			short_output = 1;
 		if (argv[1][0] == 'b')
 			only_basic = TRUE;
-		if (argv[1][0] == 'e')
+		if (argv[1][0] == 'm')
 			only_everything = TRUE;
 	}
 	// printf("\xF0\x9F\x98\x8A\n");
     FILE *file = fopen(filename, "w");
+	signal(SIGSEGV, segfault_handler);
     
     if (file != NULL) {
         freopen("output.txt", "w", stdout);
@@ -115,11 +126,6 @@ void bettercompare(char *s)
 	{
 		if (*s0 == '#')
 		{
-			// if(testnb && short_output == FALSE)
-			// {
-			// 	printresult(testnb, errornb);
-			// 	testnb = 0;errornb = 0;
-			// }
 			if(strncmp(s0, "#TEST", 4) == 0)
 			{
 				if(short_output == FALSE)
