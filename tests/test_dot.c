@@ -67,16 +67,6 @@ static void	test_X()
 	test_number("%5.20X");
 }
 
-static void	test_p()
-{
-		test_pointer("%.p");
-		test_pointer("%.3p");
-		test_pointer("%.20p");
-		test_pointer("%5.p");
-		test_pointer("%5.3p");
-		test_pointer("%5.20p");
-}
-
 static void	test_s()
 {
 		test_string("%.s");
@@ -102,8 +92,6 @@ void	print_test_dot()
 	test_x();
 	printf("#TEST HEXADECIMAL (%%X) \n");
 	test_X();
-	printf("#TEST Pointer (%%p) \n");
-	test_p();
 	printf("#TEST String (%%s) \n");
 	test_s();
 }

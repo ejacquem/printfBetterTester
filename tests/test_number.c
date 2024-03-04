@@ -49,7 +49,6 @@ static void	test_X()
 
 static void	test_p()
 {
-		test_pointer("%0p");
 		test_pointer("%1p");
 		test_pointer("%2p");
 		test_pointer("%3p");

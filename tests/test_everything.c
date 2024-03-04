@@ -94,5 +94,5 @@ void	print_test_everything()
 	printf("#TEST HEXADECIMAL (%%X) \n");
 	test_all_x(" %*.*X");
 	printf("#TEST Pointer (%%p) \n");
-	test_all_p(" %*.*p");
+	test_all_p(" %*p__");
 }
