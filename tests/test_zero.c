@@ -10,6 +10,8 @@ static void	test_d()
 		test_number("%0d");
 		test_number("%03d");
 		test_number("%020d");
+		test_number("%020.25d");
+		test_number("%025.20d");
 }
 
 static void	test_c()

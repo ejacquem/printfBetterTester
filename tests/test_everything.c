@@ -41,6 +41,8 @@ static void	test_all_n(char *s)
 	test_loop(str, test_number);
 	str[1] = '+';	
 	test_loop(str, test_number);
+	str[1] = '0';	
+	test_loop(str, test_number);
 }
 
 static void	test_all_x(char *s)
